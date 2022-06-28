@@ -20,6 +20,8 @@ const searchBtn = document.querySelector('[data-btn="search"]');
 // 篩選區 dom
 // h5 dom
 const filterH5 = document.querySelector('.filter-area h5');
+// 下拉選單
+const dropdownBtn = document.querySelector('.dropdown');
 
 // console.log(searchInput.value, searchBtn);
 // 渲染 Render function 獨立
@@ -141,5 +143,35 @@ searchBtn.addEventListener("click", (e) => {
 
 })
 
+// 尚須修正bug sort button可以一次按兩個
 
 // 排序
+
+dropdownBtn.addEventListener("click", (e) => { 
+  if (e.target.nodeName !== "BUTTON") {
+    return;
+  };
+  let data = [];
+  if (e.target.getAttribute('data-sort') == "up") {
+    data = originalData.sort((a, b) => {
+      return b['上價'] - a['上價'];
+    })
+  } else if (e.target.getAttribute('data-sort') == "middle") {
+    data = originalData.sort((a, b) => {
+      return b['中價'] - a['中價'];
+    })
+  } else if (e.target.getAttribute('data-sort') == "bottom") {
+    data = originalData.sort((a, b) => {
+      return b['下價'] - a['下價'];
+    })
+  } else if (e.target.getAttribute('data-sort') == "average") {
+    data = originalData.sort((a, b) => {
+      return b['平均價'] - a['平均價'];
+    })
+  } else if (e.target.getAttribute('data-sort') == "qty") {
+    data = originalData.sort((a, b) => {
+      return b['交易量'] - a['交易量'];
+    })
+  }
+  render(data);
+})
