@@ -1,0 +1,51 @@
+
+// mixin
+
+@mixin mobile{
+  @media(max-width: 375px){
+    @content
+  }
+}
+
+
+// index
+.wrap{
+  margin: 0 auto;
+     max-width:944px;
+}
+
+.index{
+  &-bg{
+    background-image: url(https://hexschool.github.io/js-filter/assets/bg.jpg);
+    background-position: center;
+    background-size:cover;
+    // height: 100vh;
+    @include mobile{
+      background-image: url(https://hexschool.github.io/js-filter/assets/bg-sm.jpg);
+    }
+  }
+  &-logo{
+    padding:24px 0px;
+  }
+  &-content{
+    border-radius:4px;
+    box-shadow: 0 0 0 3px #F8D45A, 0 0 0 8px #FFFCEF, 0 2px 20px 0;
+    background:white; 
+    padding:40px;
+  }
+}
+.sort-area{
+  margin-bottom: 20px;
+  .btn{
+    border: 2px solid #2A2A2A ;
+    box-shadow: 0 1px 0 0 #2A2A2A;
+    padding: 8px 40px;
+    margin: 0px 5px;
+    &:active{
+      background: $primary;
+    }
+  }
+  .active{
+    background: $primary;
+  }
+}
